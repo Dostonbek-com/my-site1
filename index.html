@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeMaster Pro - IT Akademiyasi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Auth Overlay -->
+    <div class="auth-overlay" id="authOverlay">
+        <div class="auth-container">
+            <div class="auth-logo">
+                <h1>⚡ CodeMaster</h1>
+                <p>IT texnologiyalarini o'rganish uchun platforma</p>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login')">Kirish</button>
+                <button class="auth-tab" onclick="switchAuthTab('register')">Ro'yxatdan o'tish</button>
+            </div>
+
+            <!-- Login Form -->
+            <form class="auth-form active" id="loginForm" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <label>Email yoki Username</label>
+                    <input type="text" class="auth-input" id="loginEmail" placeholder="email@example.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Parol</label>
+                    <input type="password" class="auth-input" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="auth-btn">Kirish</button>
+
+                <div class="auth-divider">
+                    <span>yoki</span>
+                </div>
+
+                <div class="social-login">
+                    <button type="button" class="social-btn" onclick="socialLogin('google')">
+                        <span>🔍</span> Google
+                    </button>
+                    <button type="button" class="social-btn" onclick="socialLogin('github')">
+                        <span>🐙</span> GitHub
+                    </button>
+                </div>
+            </form>
+
+            <!-- Register Form -->
+            <form class="auth-form" id="registerForm" onsubmit="handleRegister(event)">
+                <div class="input-group">
+                    <label>To'liq ism</label>
+                    <input type="text" class="auth-input" id="regName" placeholder="Ali Valiyev" required>
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" class="auth-input" id="regEmail" placeholder="email@example.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" class="auth-input" id="regUsername" placeholder="alivaliyev" required>
+                </div>
+                <div class="input-group">
+                    <label>Parol</label>
+                    <input type="password" class="auth-input" id="regPassword" placeholder="Kamida 8 ta belgi" required
+                        minlength="8">
+                </div>
+                <button type="submit" class="auth-btn">Ro'yxatdan o'tish</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- User Profile (shown after login) -->
+    <div class="user-profile" id="userProfile" style="display: none;">
+        <div class="user-avatar" id="userAvatar">A</div>
+        <div class="user-info">
+            <div class="user-name" id="userName">Ali Valiyev</div>
+            <div class="user-role">Frontend Developer</div>
+        </div>
+        <button class="logout-btn" onclick="logout()" title="Chiqish">🚪</button>
+    </div>
+
+    <!-- Loader -->
+    <div class="loader hidden" id="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Background -->
+    <div class="bg-animation"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.scrollTo(0,0)">
+            <span>⚡</span>
+            <span>CodeMaster</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#html">HTML</a></li>
+            <li><a href="#css">CSS</a></li>
+            <li><a href="#js">JavaScript</a></li>
+            <li><a href="#comments">Forum</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>🚀</span>
+                <span>0 dan Professionalgacha</span>
+            </div>
+            <h1>IT Texnologiyalar Akademiyasi</h1>
+            <p>Zamonaviy web dasturlashni biz bilan o'rganing. HTML, CSS, JavaScript va boshqa texnologiyalar bo'yicha
+                to'liq qo'llanma.</p>
+            <div class="cta-buttons">
+                <a href="#html" class="btn btn-primary">
+                    <span>🎯</span>
+                    <span>O'rganishni Boshlash</span>
+                </a>
+                <a href="#comments" class="btn btn-secondary">
+                    <span>💬</span>
+                    <span>Forumga o'tish</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- HTML Section -->
+    <section class="section" id="html">
+        <div class="section-header">
+            <span class="section-tag">Asosiy Tamoyillar</span>
+            <h2 class="section-title">HTML5</h2>
+            <p class="section-desc">Web sahifaning skeleti. Semantik teglar va strukturani o'rganing.</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card html" onclick="toggleCard(this)">
+                <div class="expand-icon">+</div>
+                <div class="card-icon">📄</div>
+                <h3>HTML Asoslari</h3>
+                <p>HTML (HyperText Markup Language) web sahifalarni yaratish uchun ishlatiladigan standart belgilash
+                    tili.</p>
+                <div class="card-tags">
+                    <span class="tag">Teglar</span>
+                    <span class="tag">Atributlar</span>
+                    <span class="tag">Struktura</span>
+                </div>
+
+                <div class="card-content">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span style="color: var(--neon-blue); font-weight: 600;">HTML5 Dokument Strukturasi</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Nusxa olish</button>
+                        </div>
+                        <pre style="color: #a5b4fc; overflow-x: auto;">&lt;!DOCTYPE html&gt;
+&lt;html lang="uz"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Mening Sahifam&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Salom Dunyo!&lt;/h1&gt;
+    &lt;/header&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                    </div>
+
+                    <div class="demo-area">
+                        <h4>🎮 Interaktiv Mashq</h4>
+                        <p>Quyidagi maydonga HTML tegini yozing:</p>
+                        <input type="text" class="demo-input" id="htmlInput"
+                            placeholder="Masalan: &lt;h1&gt;Salom&lt;/h1&gt;" onkeyup="updateHtmlPreview()">
+                        <div class="demo-output" id="htmlPreview">Natija shu yerda ko'rinadi...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card html" onclick="toggleCard(this)">
+                <div class="expand-icon">+</div>
+                <div class="card-icon">📝</div>
+                <h3>Semantik Teglar</h3>
+                <p>Ma'noli teglar yordamida sahifa strukturasini yaxshilash.</p>
+                <div class="card-tags">
+                    <span class="tag">header</span>
+                    <span class="tag">nav</span>
+                    <span class="tag">article</span>
+                    <span class="tag">section</span>
+                </div>
+
+                <div class="card-content">
+                    <div
+                        style="background: #0c0c14; border-radius: 16px; padding: 25px; font-family: monospace; border: 1px solid rgba(255,255,255,0.1);">
+                        <div style="margin-bottom: 15px; display: flex; gap: 8px;">
+                            <div style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f56;"></div>
+                            <div style="width: 12px; height: 12px; border-radius: 50%; background: #ffbd2e;"></div>
+                            <div style="width: 12px; height: 12px; border-radius: 50%; background: #27c93f;"></div>
+                        </div>
+                        <div style="color: #4ade80; line-height: 2;">
+                            &lt;article&gt; - Mustaqil maqola<br>
+                            &lt;section&gt; - Bo'lim<br>
+                            &lt;nav&gt; - Navigatsiya<br>
+                            &lt;aside&gt; - Yon panel<br>
+                            &lt;footer&gt; - Pastki qism<br>
+                            &lt;figure&gt; - Rasmlar uchun
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card html" onclick="toggleCard(this)">
+                <div class="expand-icon">+</div>
+                <div class="card-icon">🎨</div>
+                <h3>Formalar va Input</h3>
+                <p>Foydalanuvchi bilan interaktivlik uchun form elementlari.</p>
+                <div class="card-tags">
+                    <span class="tag">input</span>
+                    <span class="tag">form</span>
+                    <span class="tag">validation</span>
+                </div>
+
+                <div class="card-content">
+                    <div class="demo-area">
+                        <h4>Form Elementlari Demo</h4>
+                        <form onsubmit="event.preventDefault(); showNotification('Forma yuborildi!')">
+                            <input type="text" class="demo-input" placeholder="Ismingiz" required
+                                style="margin-bottom: 10px; width: 100%;">
+                            <input type="email" class="demo-input" placeholder="Email" required
+                                style="margin-bottom: 10px; width: 100%;">
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Yuborish</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CSS Section -->
+    <section class="section" id="css">
+        <div class="section-header">
+            <span class="section-tag">Uslub va Dizayn</span>
+            <h2 class="section-title">CSS3</h2>
+            <p class="section-desc">Web sahifani chiroyli va zamonaviy qilish uchun uslublar.</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card css" onclick="toggleCard(this)">
+                <div class="expand-icon">+</div>
+                <div class="card-icon">🎨</div>
+                <h3>CSS Asoslari</h3>
+                <p>Selektorlar, xususiyatlar va qiymatlar bilan ishlash.</p>
+                <div class="card-tags">
+                    <span class="tag">Selectors</span>
+                    <span class="tag">Box Model</span>
+                    <span class="tag">Flexbox</span>
+                </div>
+
+                <div class="card-content">
+                    <div class="demo-area">
+                        <h4>🎯 CSS Generator</h4>
+                        <div class="demo-controls">
+                            <input type="color" id="colorPicker" value="#00f3ff" onchange="updateCssDemo()"
+                                style="width: 60px; height: 40px; border: none; border-radius: 8px; cursor: pointer;">
+                            <input type="range" id="radiusSlider" min="0" max="50" value="20" oninput="updateCssDemo()"
+                                style="flex: 1;">
+                            <select id="shadowSelect" onchange="updateCssDemo()" class="demo-input"
+                                style="width: auto;">
+                                <option value="none">Soya yo'q</option>
+                                <option value="small">Kichik soya</option>
+                                <option value="large">Katta soya</option>
+                                <option value="neon">Neon soya</option>
+                            </select>
+                        </div>
+                        <div id="cssDemoBox"
+                            style="width: 200px; height: 200px; background: #00f3ff; border-radius: 20px; margin: 20px auto; transition: all 0.3s;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card css" onclick="toggleCard(this)">
+                <div class="expand-icon">+</div>
+                <div class="card-icon">📐</div>
+                <h3>Flexbox va Grid</h3>
+                <p>Zamonaviy layout tizimlari bilan professional dizayn.</p>
+                <div class="card-tags">
+                    <span class="tag">display: flex</span>
+                    <span class="tag">grid</span>
+                    <span class="tag">responsive</span>
+                </div>
+
+                <div class="card-content">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="demo-area" style="min-height: 200px; display: flex; gap: 10px; flex-wrap: wrap;">
+                            <div style="width: 60px; height: 60px; background: var(--neon-blue); border-radius: 8px;">
+                            </div>
+                            <div style="width: 60px; height: 60px; background: var(--neon-purple); border-radius: 8px;">
+                            </div>
+                            <div style="width: 60px; height: 60px; background: var(--neon-green); border-radius: 8px;">
+                            </div>
+                        </div>
+                        <div class="demo-area"
+                            style="min-height: 200px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <div style="background: var(--neon-orange); border-radius: 8px;"></div>
+                            <div style="background: var(--neon-pink); border-radius: 8px;"></div>
+                            <div style="background: var(--neon-blue); border-radius: 8px; grid-column: 1 / -1;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript Section -->
+    <section class="section" id="js">
+        <div class="section-header">
+            <span class="section-tag">Interaktivlik</span>
+            <h2 class="section-title">JavaScript</h2>
+            <p class="section-desc">Web sahifani jonlantiruvchi dasturlash tili.</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card js" onclick="toggleCard(this)">
+                <div class="expand-icon">+</div>
+                <div class="card-icon">⚡</div>
+                <h3>JS Asoslari</h3>
+                <p>O'zgaruvchilar, funksiyalar va operatorlar.</p>
+                <div class="card-tags">
+                    <span class="tag">Variables</span>
+                    <span class="tag">Functions</span>
+                    <span class="tag">DOM</span>
+                </div>
+
+                <div class="card-content">
+                    <div class="demo-area">
+                        <h4>🧮 Kalkulyator</h4>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 300px; margin: 0 auto;">
+                            <div id="calcDisplay"
+                                style="grid-column: 1 / -1; background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; text-align: right; font-size: 1.5rem; font-family: monospace;">
+                                0</div>
+                            <button class="btn" onclick="calc('C')"
+                                style="background: #ff5f56; padding: 15px;">C</button>
+                            <button class="btn" onclick="calc('/')" style="padding: 15px;">/</button>
+                            <button class="btn" onclick="calc('*')" style="padding: 15px;">×</button>
+                            <button class="btn" onclick="calc('-')" style="padding: 15px;">-</button>
+                            <button class="btn" onclick="calc('7')" style="padding: 15px;">7</button>
+                            <button class="btn" onclick="calc('8')" style="padding: 15px;">8</button>
+                            <button class="btn" onclick="calc('9')" style="padding: 15px;">9</button>
+                            <button class="btn" onclick="calc('+')" style="grid-row: span 2; padding: 15px;">+</button>
+                            <button class="btn" onclick="calc('4')" style="padding: 15px;">4</button>
+                            <button class="btn" onclick="calc('5')" style="padding: 15px;">5</button>
+                            <button class="btn" onclick="calc('6')" style="padding: 15px;">6</button>
+                            <button class="btn" onclick="calc('1')" style="padding: 15px;">1</button>
+                            <button class="btn" onclick="calc('2')" style="padding: 15px;">2</button>
+                            <button class="btn" onclick="calc('3')" style="padding: 15px;">3</button>
+                            <button class="btn" onclick="calc('=')"
+                                style="background: var(--neon-green); color: black; padding: 15px;">=</button>
+                            <button class="btn" onclick="calc('0')"
+                                style="grid-column: span 2; padding: 15px;">0</button>
+                            <button class="btn" onclick="calc('.')" style="padding: 15px;">.</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments-section" id="comments">
+        <div class="comments-header">
+            <h2>💬 Forum va Izohlar</h2>
+            <p class="comments-count">Hozircha <span id="commentCount">3</span> ta izoh</p>
+        </div>
+
+        <div class="comment-form">
+            <div class="comment-input-wrapper">
+                <div class="comment-avatar" id="commentAvatar">A</div>
+                <textarea class="comment-input" id="commentText"
+                    placeholder="Savolingiz yoki fikringizni yozing... Markdown qo'llab-quvvatlanadi."></textarea>
+            </div>
+            <div class="comment-actions">
+                <button class="comment-btn" onclick="addComment()">Izoh qoldirish</button>
+            </div>
+        </div>
+
+        <div class="comments-list" id="commentsList">
+            <!-- Comments will be loaded here -->
+        </div>
+    </section>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-icon">✓</div>
+        <div>
+            <div style="font-weight: 600;">Muvaffaqiyatli!</div>
+            <div style="font-size: 0.9rem; color: var(--text-secondary);" id="notifText">Operatsiya bajarildi</div>
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>
+
+</html>
